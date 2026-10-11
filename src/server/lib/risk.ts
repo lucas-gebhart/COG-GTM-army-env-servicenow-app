@@ -43,6 +43,6 @@ export function computeRisk(input: RiskInput): RiskResult {
     if (input.openEnforcementActions) drivers.push(`${input.openEnforcementActions} open enforcement action${input.openEnforcementActions === 1 ? '' : 's'}`)
     if (input.penaltyExposure > 0) drivers.push(`$${Math.round(input.penaltyExposure).toLocaleString('en-US')} penalty exposure`)
 
-    const rating: RiskRating = score >= 40 ? 'high' : score >= 15 ? 'moderate' : 'low'
+    const rating: RiskRating = score >= 100 ? 'high' : score >= 40 ? 'moderate' : 'low'
     return { score, rating, drivers }
 }

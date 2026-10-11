@@ -93,9 +93,11 @@ describe('risk', () => {
             penaltyExposure: 150000,
         })
         expect(r.score).toBe(10 * 2 + 2 + 1 + 15 + 20)
-        expect(r.rating).toBe('high')
+        expect(r.rating).toBe('moderate')
+        const worst = computeRisk({ openFindings: Array.from({ length: 6 }, () => ({ severity: 'significant' as const, overdue: true, repeat: true })), openEnforcementActions: 2, penaltyExposure: 500000 })
+        expect(worst.rating).toBe('high')
         expect(r.drivers).toHaveLength(4)
-        expect(computeRisk({ openFindings: [{ severity: 'major', overdue: false, repeat: false }, { severity: 'major', overdue: false, repeat: false }, { severity: 'major', overdue: false, repeat: false }, { severity: 'major', overdue: false, repeat: false }], openEnforcementActions: 0, penaltyExposure: 0 }).rating).toBe('moderate')
+        expect(computeRisk({ openFindings: [{ severity: 'major', overdue: false, repeat: false }, { severity: 'major', overdue: false, repeat: false }, { severity: 'major', overdue: false, repeat: false }, { severity: 'major', overdue: false, repeat: false }], openEnforcementActions: 0, penaltyExposure: 0 }).rating).toBe('low')
     })
 })
 
