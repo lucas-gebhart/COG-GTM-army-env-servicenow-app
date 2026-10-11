@@ -1,0 +1,6 @@
+{
+    "scope": "x_cog_env",
+    "scopeId": "026aada74bd6411f941daffd1f4200dc",
+    "name": "Army Environmental Compliance",
+    "tsconfigPath": "./src/server/tsconfig.json"
+}

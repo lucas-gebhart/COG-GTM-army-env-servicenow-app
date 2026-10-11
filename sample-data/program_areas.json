@@ -1,0 +1,79 @@
+[
+  {
+    "code": "AIR",
+    "name": "Air emissions",
+    "order": 10,
+    "description": "Air emissions program area",
+    "active": true
+  },
+  {
+    "code": "HW",
+    "name": "Hazardous waste",
+    "order": 20,
+    "description": "Hazardous waste program area",
+    "active": true
+  },
+  {
+    "code": "HM",
+    "name": "Hazardous materials",
+    "order": 30,
+    "description": "Hazardous materials program area",
+    "active": true
+  },
+  {
+    "code": "WATER",
+    "name": "Water quality and wastewater",
+    "order": 40,
+    "description": "Water quality and wastewater program area",
+    "active": true
+  },
+  {
+    "code": "STORM",
+    "name": "Storm water",
+    "order": 50,
+    "description": "Storm water program area",
+    "active": true
+  },
+  {
+    "code": "DW",
+    "name": "Drinking water",
+    "order": 60,
+    "description": "Drinking water program area",
+    "active": true
+  },
+  {
+    "code": "TANKS",
+    "name": "Storage tanks",
+    "order": 70,
+    "description": "Storage tanks program area",
+    "active": true
+  },
+  {
+    "code": "PEST",
+    "name": "Pesticides",
+    "order": 80,
+    "description": "Pesticides program area",
+    "active": true
+  },
+  {
+    "code": "SW",
+    "name": "Solid waste",
+    "order": 90,
+    "description": "Solid waste program area",
+    "active": true
+  },
+  {
+    "code": "NAT",
+    "name": "Natural and cultural resources",
+    "order": 100,
+    "description": "Natural and cultural resources program area",
+    "active": true
+  },
+  {
+    "code": "EMS",
+    "name": "Environmental management system",
+    "order": 110,
+    "description": "Environmental management system program area",
+    "active": true
+  }
+]
