@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Fort Cavazos",
+    "uic": "W0ZA01",
+    "acom": "imcom",
+    "imcom_directorate": "readiness",
+    "state": "TX",
+    "epa_region": 6,
+    "active": true
+  },
+  {
+    "name": "Fort Bliss",
+    "uic": "W0ZA02",
+    "acom": "imcom",
+    "imcom_directorate": "readiness",
+    "state": "TX",
+    "epa_region": 6,
+    "active": true
+  },
+  {
+    "name": "Fort Liberty",
+    "uic": "W0ZA03",
+    "acom": "imcom",
+    "imcom_directorate": "readiness",
+    "state": "NC",
+    "epa_region": 4,
+    "active": true
+  },
+  {
+    "name": "Joint Base Lewis-McChord",
+    "uic": "W0ZA04",
+    "acom": "imcom",
+    "imcom_directorate": "readiness",
+    "state": "WA",
+    "epa_region": 10,
+    "active": true
+  },
+  {
+    "name": "Fort Campbell",
+    "uic": "W0ZA05",
+    "acom": "imcom",
+    "imcom_directorate": "readiness",
+    "state": "KY",
+    "epa_region": 4,
+    "active": true
+  },
+  {
+    "name": "Fort Stewart",
+    "uic": "W0ZA06",
+    "acom": "imcom",
+    "imcom_directorate": "readiness",
+    "state": "GA",
+    "epa_region": 4,
+    "active": true
+  },
+  {
+    "name": "Fort Riley",
+    "uic": "W0ZA07",
+    "acom": "imcom",
+    "imcom_directorate": "readiness",
+    "state": "KS",
+    "epa_region": 7,
+    "active": true
+  },
+  {
+    "name": "Fort Carson",
+    "uic": "W0ZA08",
+    "acom": "imcom",
+    "imcom_directorate": "readiness",
+    "state": "CO",
+    "epa_region": 8,
+    "active": true
+  },
+  {
+    "name": "Fort Drum",
+    "uic": "W0ZA09",
+    "acom": "imcom",
+    "imcom_directorate": "readiness",
+    "state": "NY",
+    "epa_region": 2,
+    "active": true
+  },
+  {
+    "name": "Fort Moore",
+    "uic": "W0ZA10",
+    "acom": "imcom",
+    "imcom_directorate": "training",
+    "state": "GA",
+    "epa_region": 4,
+    "active": true
+  }
+]

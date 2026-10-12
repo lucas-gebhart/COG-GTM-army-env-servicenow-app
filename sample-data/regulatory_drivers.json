@@ -1,0 +1,210 @@
+[
+  {
+    "statute": "rcra",
+    "citation": "40 CFR 262.17(a)(1)",
+    "name": "Large quantity generator accumulation (90 days)",
+    "regulator_level": "federal",
+    "program_area": "HW",
+    "active": true
+  },
+  {
+    "statute": "rcra",
+    "citation": "40 CFR 262.17(a)(5)",
+    "name": "Container labeling and marking",
+    "regulator_level": "federal",
+    "program_area": "HW",
+    "active": true
+  },
+  {
+    "statute": "rcra",
+    "citation": "40 CFR 262.15(a)(4)",
+    "name": "Satellite accumulation area management",
+    "regulator_level": "federal",
+    "program_area": "HW",
+    "active": true
+  },
+  {
+    "statute": "rcra",
+    "citation": "40 CFR 262.17(a)(7)",
+    "name": "Hazardous waste personnel training",
+    "regulator_level": "federal",
+    "program_area": "HW",
+    "active": true
+  },
+  {
+    "statute": "rcra",
+    "citation": "40 CFR 262.11",
+    "name": "Hazardous waste determination",
+    "regulator_level": "federal",
+    "program_area": "HW",
+    "active": true
+  },
+  {
+    "statute": "rcra",
+    "citation": "40 CFR 280.34",
+    "name": "UST operation and maintenance records",
+    "regulator_level": "federal",
+    "program_area": "TANKS",
+    "active": true
+  },
+  {
+    "statute": "rcra",
+    "citation": "40 CFR 280.43",
+    "name": "UST release detection",
+    "regulator_level": "federal",
+    "program_area": "TANKS",
+    "active": true
+  },
+  {
+    "statute": "cwa",
+    "citation": "40 CFR 112.7",
+    "name": "SPCC plan implementation",
+    "regulator_level": "federal",
+    "program_area": "TANKS",
+    "active": true
+  },
+  {
+    "statute": "cwa",
+    "citation": "40 CFR 122.26 / MSGP",
+    "name": "Industrial storm water permit (SWPPP, inspections)",
+    "regulator_level": "federal",
+    "program_area": "STORM",
+    "active": true
+  },
+  {
+    "statute": "cwa",
+    "citation": "State NPDES permit",
+    "name": "Wastewater discharge monitoring and reporting",
+    "regulator_level": "state",
+    "program_area": "WATER",
+    "active": true
+  },
+  {
+    "statute": "cwa",
+    "citation": "40 CFR 403",
+    "name": "Industrial pretreatment",
+    "regulator_level": "federal",
+    "program_area": "WATER",
+    "active": true
+  },
+  {
+    "statute": "caa",
+    "citation": "40 CFR 70 / Title V permit",
+    "name": "Title V operating permit recordkeeping",
+    "regulator_level": "federal",
+    "program_area": "AIR",
+    "active": true
+  },
+  {
+    "statute": "caa",
+    "citation": "40 CFR 63 Subpart ZZZZ",
+    "name": "Stationary RICE NESHAP (generators)",
+    "regulator_level": "federal",
+    "program_area": "AIR",
+    "active": true
+  },
+  {
+    "statute": "caa",
+    "citation": "40 CFR 82 Subpart F",
+    "name": "Refrigerant management and technician certification",
+    "regulator_level": "federal",
+    "program_area": "AIR",
+    "active": true
+  },
+  {
+    "statute": "caa",
+    "citation": "40 CFR 63 Subpart HHHHHH",
+    "name": "Paint stripping and surface coating NESHAP",
+    "regulator_level": "federal",
+    "program_area": "AIR",
+    "active": true
+  },
+  {
+    "statute": "sdwa",
+    "citation": "40 CFR 141 Subpart I",
+    "name": "Lead and copper rule sampling",
+    "regulator_level": "federal",
+    "program_area": "DW",
+    "active": true
+  },
+  {
+    "statute": "sdwa",
+    "citation": "40 CFR 141.21",
+    "name": "Coliform monitoring",
+    "regulator_level": "federal",
+    "program_area": "DW",
+    "active": true
+  },
+  {
+    "statute": "fifra",
+    "citation": "40 CFR 171 / AR 200-1 ch.5",
+    "name": "Certified pesticide applicators and records",
+    "regulator_level": "federal",
+    "program_area": "PEST",
+    "active": true
+  },
+  {
+    "statute": "epcra",
+    "citation": "40 CFR 370",
+    "name": "Tier II hazardous chemical inventory reporting",
+    "regulator_level": "federal",
+    "program_area": "HM",
+    "active": true
+  },
+  {
+    "statute": "epcra",
+    "citation": "40 CFR 372",
+    "name": "Toxics Release Inventory (Form R)",
+    "regulator_level": "federal",
+    "program_area": "HM",
+    "active": true
+  },
+  {
+    "statute": "army_policy",
+    "citation": "AR 200-1 para 4-2",
+    "name": "Hazardous material authorized use list",
+    "regulator_level": "army",
+    "program_area": "HM",
+    "active": true
+  },
+  {
+    "statute": "rcra",
+    "citation": "40 CFR 273",
+    "name": "Universal waste management",
+    "regulator_level": "federal",
+    "program_area": "SW",
+    "active": true
+  },
+  {
+    "statute": "army_policy",
+    "citation": "AR 200-1 para 13 / EO 14057",
+    "name": "Solid waste diversion reporting",
+    "regulator_level": "army",
+    "program_area": "SW",
+    "active": true
+  },
+  {
+    "statute": "esa",
+    "citation": "16 USC 1536 / INRMP",
+    "name": "Endangered species consultation and INRMP implementation",
+    "regulator_level": "federal",
+    "program_area": "NAT",
+    "active": true
+  },
+  {
+    "statute": "nhpa",
+    "citation": "36 CFR 800 / ICRMP",
+    "name": "Section 106 consultation and ICRMP",
+    "regulator_level": "federal",
+    "program_area": "NAT",
+    "active": true
+  },
+  {
+    "statute": "army_policy",
+    "citation": "AR 200-1 para 1-15 / ISO 14001",
+    "name": "EMS management review and internal audit",
+    "regulator_level": "army",
+    "program_area": "EMS",
+    "active": true
+  }
+]
