@@ -1,13 +1,15 @@
 /** Business rules for x_cog_env_assessment. */
 import { GlideRecord } from '@servicenow/glide'
 import { TABLES, type AssessmentState } from '../lib/domain.ts'
+import { canTransitionAssessment } from '../lib/lifecycle.ts'
 import { finalizationDueDate } from '../lib/sla.ts'
 import { mergeResults, validateDateOrder, validateFiscalYear, validateMultiline } from '../lib/validators.ts'
 import { slaConfig, todayIso } from './config.ts'
-import { abortWithValidation, int, str, type AnyRecord } from './glideSupport.ts'
+import { abortWithMessage, abortWithValidation, currentRoleKeys, int, str, type AnyRecord } from './glideSupport.ts'
 
 /** before insert/update */
-export function assessmentBefore(current: AnyRecord): void {
+export function assessmentBefore(current: AnyRecord, previous: AnyRecord): void {
+    const isInsert = current.isNewRecord()
     const validation = mergeResults([
         validateFiscalYear(str(current, 'fiscal_year')),
         validateMultiline('scope_notes', str(current, 'scope_notes'), 4000, false),
@@ -19,7 +21,15 @@ export function assessmentBefore(current: AnyRecord): void {
     }
     const end = str(current, 'end_date')
     if (end) current.setValue('finalization_due', finalizationDueDate(end, slaConfig()) ?? '')
-    const state = str(current, 'state') as AssessmentState
+    const fromState = (isInsert ? 'planned' : str(previous, 'state') || 'planned') as AssessmentState
+    const state = (str(current, 'state') || 'planned') as AssessmentState
+    if (fromState !== state) {
+        const decision = canTransitionAssessment({ from: fromState, to: state, roles: currentRoleKeys(), endDate: end })
+        if (!decision.allowed) {
+            abortWithMessage(current, decision.reason ?? 'That state change is not allowed.', TABLES.assessment, `assessment_${fromState}_to_${state}`)
+            return
+        }
+    }
     if ((state === 'finalized' || state === 'closed') && !str(current, 'finalized_on')) current.setValue('finalized_on', todayIso())
 }
 

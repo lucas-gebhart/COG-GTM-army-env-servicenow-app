@@ -6,12 +6,12 @@ import { findingAfter, findingBefore } from '../../server/rules/finding'
 
 BusinessRule({
     $id: Now.ID['br_assessment_before'],
-    name: 'ENV Assessment - validate and stamp finalization due',
+    name: 'ENV Assessment - validate, state guard, finalization due',
     table: 'x_cog_env_assessment',
     when: 'before',
     action: ['insert', 'update'],
     order: 100,
-    description: 'Validates fiscal year and fieldwork dates, derives report finalization due (fieldwork end + property days) and stamps finalized_on.',
+    description: 'Validates fiscal year and fieldwork dates, derives report finalization due (fieldwork end + property days), enforces the planned > in progress > draft report > finalized > closed state machine and stamps finalized_on.',
     script: assessmentBefore,
 })
 
