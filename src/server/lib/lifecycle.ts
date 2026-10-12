@@ -2,7 +2,7 @@
  * State machines for findings, corrective actions and enforcement actions, with the role rules the
  * business rules and UI actions enforce. Pure functions, exercised directly by Vitest.
  */
-import type { CaState, EnforcementState, FindingState, RoleKey, Severity } from './domain.ts'
+import type { AssessmentState, CaState, EnforcementState, FindingState, RoleKey, Severity } from './domain.ts'
 
 export interface Decision {
     allowed: boolean
@@ -11,6 +11,23 @@ export interface Decision {
 const allow = (): Decision => ({ allowed: true })
 const deny = (reason: string): Decision => ({ allowed: false, reason })
 const has = (roles: readonly RoleKey[], ...wanted: RoleKey[]): boolean => roles.includes('admin') || wanted.some((w) => roles.includes(w))
+
+const ASSESSMENT_TRANSITIONS: Record<AssessmentState, readonly AssessmentState[]> = {
+    planned: ['in_progress'],
+    in_progress: ['draft_report', 'planned'],
+    draft_report: ['finalized', 'in_progress'],
+    finalized: ['closed'],
+    closed: [],
+}
+export function canTransitionAssessment(input: { from: AssessmentState; to: AssessmentState; roles: readonly RoleKey[]; endDate: string }): Decision {
+    const { from, to, roles, endDate } = input
+    if (from === to) return allow()
+    if (!ASSESSMENT_TRANSITIONS[from].includes(to)) return deny(`An assessment cannot move from ${from} to ${to}`)
+    if (to === 'draft_report' && !endDate) return deny('Record the fieldwork end date before closing fieldwork')
+    if (to === 'finalized' && !has(roles, 'assessor', 'compliance_officer', 'hqda_analyst')) return deny('Role not permitted to finalize assessment reports')
+    if (to === 'closed' && !has(roles, 'compliance_officer', 'commander', 'hqda_analyst')) return deny('Role not permitted to close assessments')
+    return allow()
+}
 
 const FINDING_TRANSITIONS: Record<FindingState, readonly FindingState[]> = {
     open: ['ca_assigned', 'risk_accepted', 'closed'],

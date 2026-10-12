@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { addDays, daysBetween, fiscalQuarterOf, fiscalYearOf } from '../src/server/lib/dates'
-import { canTransitionCa, canTransitionEnforcement, canTransitionFinding, deriveFindingState } from '../src/server/lib/lifecycle'
+import { canTransitionAssessment, canTransitionCa, canTransitionEnforcement, canTransitionFinding, deriveFindingState } from '../src/server/lib/lifecycle'
 import { detectRepeat } from '../src/server/lib/repeat'
 import { computeRisk } from '../src/server/lib/risk'
 import { closureDueDate, computeAging, enforcementResponseDue, finalizationDueDate } from '../src/server/lib/sla'
@@ -54,6 +54,12 @@ describe('repeat detection', () => {
 
 describe('lifecycle', () => {
     it('guards finding closure', () => {
+        expect(canTransitionAssessment({ from: 'planned', to: 'finalized', roles: ['admin'], endDate: '2026-10-05' }).allowed).toBe(false)
+        expect(canTransitionAssessment({ from: 'planned', to: 'in_progress', roles: ['assessor'], endDate: '' }).allowed).toBe(true)
+        expect(canTransitionAssessment({ from: 'in_progress', to: 'draft_report', roles: ['assessor'], endDate: '' }).allowed).toBe(false)
+        expect(canTransitionAssessment({ from: 'draft_report', to: 'finalized', roles: ['commander'], endDate: '2026-10-05' }).allowed).toBe(false)
+        expect(canTransitionAssessment({ from: 'draft_report', to: 'finalized', roles: ['assessor'], endDate: '2026-10-05' }).allowed).toBe(true)
+        expect(canTransitionAssessment({ from: 'closed', to: 'planned', roles: ['admin'], endDate: '2026-10-05' }).allowed).toBe(false)
         expect(canTransitionFinding({ from: 'pending_verification', to: 'closed', severity: 'significant', roles: ['compliance_officer'], openCorrectiveActions: 0 }).allowed).toBe(false)
         expect(canTransitionFinding({ from: 'pending_verification', to: 'closed', severity: 'significant', roles: ['commander'], openCorrectiveActions: 0 }).allowed).toBe(true)
         expect(canTransitionFinding({ from: 'pending_verification', to: 'closed', severity: 'minor', roles: ['compliance_officer'], openCorrectiveActions: 1 }).allowed).toBe(false)
