@@ -17,6 +17,7 @@
         "test": "vitest run",
         "test:watch": "vitest",
         "seed": "tsx tools/seed.ts",
+        "seed:users": "tsx tools/seed-demo-users.ts",
         "gen:sample-data": "tsx tools/generate-sample-data.ts",
         "gen:security": "tsx tools/generate-fluent-security.ts"
     },
