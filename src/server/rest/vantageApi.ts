@@ -1,5 +1,5 @@
 /** Scripted REST handlers for the Vantage data product API and the mock receiver. */
-import { DATA_PRODUCT_SCHEMAS, catalogEntry } from '../lib/vantage.ts'
+import { DATA_PRODUCT_SCHEMAS, catalogEntry, resolveDataProduct } from '../lib/vantage.ts'
 import { type DataProduct } from '../lib/domain.ts'
 import { hasAnyRole, securityLog } from '../rules/glideSupport.ts'
 import { buildProduct, runAllProducts, runExport } from '../vantage/exporter.ts'
@@ -27,9 +27,6 @@ function parseBody(request: ApiRequest): unknown {
         return null
     }
 }
-function isProduct(p: string): p is DataProduct {
-    return Object.prototype.hasOwnProperty.call(DATA_PRODUCT_SCHEMAS, p)
-}
 
 export function catalog(_request: ApiRequest, response: RestResponse): void {
     securityHeaders(response)
@@ -39,8 +36,8 @@ export function catalog(_request: ApiRequest, response: RestResponse): void {
 export function dataProduct(request: ApiRequest, response: RestResponse): void {
     securityHeaders(response)
     if (!hasAnyRole(['hqda_analyst', 'admin'])) return writeError(response, 403, 'forbidden')
-    const p = pathParam(request, 'product')
-    if (!isProduct(p)) return writeError(response, 404, 'unknown_product')
+    const p = resolveDataProduct(pathParam(request, 'product'))
+    if (!p) return writeError(response, 404, 'unknown_product')
     securityLog({ event: 'data_access', source: 'vantage_api.dataProduct', outcome: 'success', details: { product: p } })
     writeJson(response, 200, buildProduct(p))
 }
@@ -48,10 +45,11 @@ export function dataProduct(request: ApiRequest, response: RestResponse): void {
 export function runProduct(request: ApiRequest, response: RestResponse): void {
     securityHeaders(response)
     if (!hasAnyRole(['hqda_analyst', 'admin'])) return writeError(response, 403, 'forbidden')
-    const p = pathParam(request, 'product')
+    const raw = pathParam(request, 'product')
     const dry = queryParam(request, 'dry_run') === 'true'
-    if (p === 'all') return writeJson(response, 200, { runs: runAllProducts('manual') })
-    if (!isProduct(p)) return writeError(response, 404, 'unknown_product')
+    if (raw === 'all') return writeJson(response, 200, { runs: runAllProducts('manual') })
+    const p = resolveDataProduct(raw)
+    if (!p) return writeError(response, 404, 'unknown_product')
     writeJson(response, 200, runExport(p, 'manual', dry))
 }
 

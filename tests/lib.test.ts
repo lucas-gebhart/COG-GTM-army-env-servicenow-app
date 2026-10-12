@@ -5,7 +5,7 @@ import { detectRepeat } from '../src/server/lib/repeat'
 import { computeRisk } from '../src/server/lib/risk'
 import { closureDueDate, computeAging, enforcementResponseDue, finalizationDueDate } from '../src/server/lib/sla'
 import { validateCitation, validateDateOrder, validateFiscalYear, validateSafeText, validateUic } from '../src/server/lib/validators'
-import { buildEnvelope, catalogEntry, contentHash, DATA_PRODUCT_SCHEMAS, projectRow } from '../src/server/lib/vantage'
+import { buildEnvelope, catalogEntry, contentHash, DATA_PRODUCT_SCHEMAS, projectRow, resolveDataProduct } from '../src/server/lib/vantage'
 
 describe('dates', () => {
     it('adds days and computes fiscal periods', () => {
@@ -108,6 +108,12 @@ describe('risk', () => {
 })
 
 describe('vantage data products', () => {
+    it('resolves products by internal key or published name', () => {
+        expect(resolveDataProduct('installation_risk')).toBe('installation_risk')
+        expect(resolveDataProduct('env_installation_risk')).toBe('installation_risk')
+        expect(resolveDataProduct('env_compliance_findings')).toBe('findings')
+        expect(resolveDataProduct('nope')).toBeUndefined()
+    })
     it('projects rows to the schema and hashes deterministically', () => {
         const row = projectRow('findings', { finding_id: 'EPF0001000', fiscal_year: '2026', repeat_finding: 'true', extra: 'dropped', days_open: 'x' })
         expect(row['finding_id']).toBe('EPF0001000')

@@ -95,7 +95,7 @@ const PRODUCT_SOURCE: Record<DataProduct, { table: string; query: string; map: (
         query: 'active=true',
         map: (gr) => ({
             installation: str(gr, 'name'),
-            uic: str(gr, 'uic'),
+            installation_uic: str(gr, 'uic'),
             acom: str(gr, 'acom'),
             imcom_directorate: str(gr, 'imcom_directorate'),
             state: str(gr, 'state'),

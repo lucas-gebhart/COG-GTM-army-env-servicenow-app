@@ -178,6 +178,12 @@ export function buildEnvelope(product: DataProduct, rows: readonly Record<string
     }
 }
 
+/** Accepts either the internal key (installation_risk) or the published name (env_installation_risk). */
+export function resolveDataProduct(name: string): DataProduct | undefined {
+    const keys = Object.keys(DATA_PRODUCTS) as DataProduct[]
+    return keys.find((k) => k === name) ?? keys.find((k) => DATA_PRODUCTS[k] === name)
+}
+
 /** Army Data Catalog style registration stub for a data product (what the steward would file). */
 export function catalogEntry(product: DataProduct): Record<string, string> {
     const s = DATA_PRODUCT_SCHEMAS[product]
@@ -188,7 +194,7 @@ export function catalogEntry(product: DataProduct): Record<string, string> {
         source_table: s.table,
         data_steward: s.steward,
         refresh: 'Daily 0300 ET (scheduled job) and on demand',
-        delivery: 'JSON envelope push to Vantage ingest endpoint; pull via GET /api/x_cog_env/data_product/{name}',
+        delivery: 'JSON envelope push to Vantage ingest endpoint; pull via GET /api/x_cog_env/vantage/data_products/{name}',
         schema_version: SCHEMA_VERSION,
         classification: 'CUI (demo instance holds synthetic data only)',
     }
